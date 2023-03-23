@@ -1,0 +1,18 @@
+.App{
+  text-align: center;
+  background-color: white;
+  min-height: 100vh;
+}
+.Header {
+  text-align: center;
+  background-color: #61dafb;
+}
+
+.data{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px;
+
+}
+

@@ -2,44 +2,56 @@
 import './App.css';
 import Header from './components/Header';
 import React,{ useState, useEffect } from 'react';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import { createRoot } from "react-dom/client";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+  
+} from "react-router-dom";
+import Error from './components/Error';
 
 
 function App() {
-    const [state,setState]=useState(2);
-    const [data,setData]=useState([]);
-
-    useEffect(() => {
-      async function getData(){
-        const get=await fetch(`https://hub.dummyapis.com/employee?noofRecords=${state}&idStarts=1001`);
-      
-        const res=await get.json();
-        setData(res);
-      }
-      getData();
-      document.title=`Number of Employees (${state})`;
-    }, [state])
+    
     
     
   return (
+    <Router>
     <div className='App'>
       <Header/>
       
-      <button onClick={()=>setState(state+1)}>Click Me {state}</button>
-      {
-        data.map((element,index)=>{
-          return(
-          <div className='data' key={index}>
-            <h4>{element.firstName}</h4>
-            <h4>{element.lastName}</h4>
-            <h4>{element.email}</h4>
-            
-          </div>
-          )
-        })
-      }
+      <Routes>
+      {/*Home*/}
+      <Route path="/" element={<Home/>}/>
+        
+      
+
+      {/*About*/}
+      <Route path="/about" element={<About/>}/>
+        
+      
+
+      {/*Contact*/}
+      <Route path="/contact" element={<Contact/>}/>
+
+      
+      {/*Error*/}
+      <Route path="*" element={<Error/>}/>
+        
+      
+      
+      </Routes>
+
+      
+      
       
       
     </div>
+    </Router>
   );
 }
 
